@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portafolio</title>
+    <link rel="stylesheet" href="/app.css" />
+</head>
+<body>
+
+    <!-- Integrantes -->
+    <section class="integrantes">
+        <h1>Integrantes</h1>
+        <ul>
+            <li><strong>Cristian Marecos</strong></li>
+            <li><strong>Jorge Candia</strong></li>
+        </ul>
+    </section>
+
+    <!-- Presentacion PDF -->
+    <section class="presentacion">
+        <h1>Presentación</h1>
+        <div class="pdf-container">
+            <embed src="./Assets/Presentacion.pdf" type="application/pdf" width="100%" height="100%"></embed>
+        </div>
+        <div class="pdf-actions">
+            <a href="./Assets/Presentacion.pdf" download class="button">Descargar PDF</a>
+        </div>
+    </section>
+
+    <!-- Proyecto en Overleaf -->
+    <section class="overleaf">
+        <h1>Proyecto en Overleaf</h1>
+        <div class="pdf-container">
+            <embed src="./Assets/ProyectoOverleaf.pdf" type="application/pdf" width="100%" height="100%"></embed>
+        </div>
+        <div class="pdf-actions">
+            <a href="./Assets/ProyectoOverleaf.pdf" download class="button">Descargar PDF</a>
+            <a href="https://www.overleaf.com/project/6722bc17e524d746b474d185" target="_blank" class="button">Ver en Overleaf</a>
+        </div>
+    </section>
+
+    <!-- Algoritmo propuesto para la solucion -->
+       <!-- Algoritmo Genético -->
+    <section class="algoritmo">
+        <h1>Algoritmo Genético para Optimización de Inventario y Distribución</h1>
+        <pre><code>
+            import random
+
+            # Configuracion de parametros
+            generations = 100           # Numero de generaciones
+            population_size = 500       # Tamanho de la poblacion
+            mutation_rate = 0.1         # Tasa de mutacion
+            elite_size = 10             # Tamano de la elite
+
+            # Genera una configuracion inicial de inventario y distribucion
+            def generate_individual():
+                inventory = [random.randint(1, 100) for _ in range(10)]  # Cada posicion representa un producto
+                distribution = [random.randint(1, 50) for _ in range(10)]  # Costos de distribucion para cada producto
+                return (inventory, distribution)
+
+            # Funcion de aptitud que minimiza el costo combinado de inventario y distribucion
+            def fitness(individual):
+                inventory, distribution = individual
+                cost_inventory = sum(inventory)  # Costo total de inventario
+                cost_distribution = sum(distribution)  # Costo total de distribucion
+                
+                # Penalizacion si algun suministro es escaso (menor a 10)
+                if any(item < 10 for item in inventory):
+                    cost_inventory += 1000  # Penalizacion alta por escasez
+                
+                total_cost = cost_inventory + cost_distribution
+                return total_cost
+
+            # Cruce entre dos individuos
+            def crossover(parent1, parent2):
+                point = random.randint(1, len(parent1[0]) - 1)
+                child_inventory = parent1[0][:point] + parent2[0][point:]
+                child_distribution = parent1[1][:point] + parent2[1][point:]
+                return (child_inventory, child_distribution)
+
+            # Mutacion
+            def mutate(individual):
+                inventory, distribution = individual
+                for i in range(len(inventory)):
+                    if random.random() < mutation_rate:
+                        inventory[i] = random.randint(1, 100)  # Mutacion en inventario
+                    if random.random() < mutation_rate:
+                        distribution[i] = random.randint(1, 50)  # Mutacion en distribucion
+
+            # Algoritmo Genetico
+            population = [generate_individual() for _ in range(population_size)]
+            best_cost_per_generation = []  # Para seguimiento del mejor costo en cada generacion
+
+            for generation in range(generations):
+                # Ordena la poblacion por aptitud (de menor a mayor costo)
+                population = sorted(population, key=fitness)
+                
+                # Registra el mejor costo de la generacion actual
+                best_cost = fitness(population[0])
+                best_cost_per_generation.append(best_cost)
+                print(f"Generacion {generation}: Mejor costo combinado = {best_cost}")
+                
+                # Imprime los individuos de la elite
+                elite_individuals = population[:elite_size]
+                print(f"Elite de la generacion {generation}: {[fitness(ind) for ind in elite_individuals]}")
+
+                # Seleccion de la elite (los mejores individuos)
+                next_generation = elite_individuals  # Top elite_size individuos
+
+                # Cruza y muta para llenar la nueva poblacion
+                while len(next_generation) < population_size:
+                    parent1, parent2 = random.sample(population[:20], 2)  # Seleccion de padres del top 20%
+                    offspring = crossover(parent1, parent2)
+                    mutate(offspring)
+                    next_generation.append(offspring)
+                
+                population = next_generation
+
+            # Mejor solucion final
+            best_solution = min(population, key=fitness)
+            print("Mejor solucion encontrada:", best_solution)
+            print("Costo de Inventario:", sum(best_solution[0]))
+            print("Costo de Distribucion:", sum(best_solution[1]))
+        </code></pre>
+    </section>
+
+    <!-- Articulos Revisados -->
+    <section class="articulos">
+        <h1>Artículos Revisados</h1>
+        <ul>
+            <li><a href="https://www.researchgate.net/publication/348209653_Stochastic_programming_for_outpatient_scheduling_with_flexible_inpatient_exam_accommodation" target="_blank">Stochastic programming for outpatient scheduling with flexible inpatient exam accommodation</a></li>
+            <li><a href="https://www.researchgate.net/publication/264234610_Optimization_of_Healthcare_Supply_Chain_using_Integrated_Inventory_and_Distribution_Planning" target="_blank">Optimization of Healthcare Supply Chain using Integrated Inventory and Distribution Planning</a></li>
+            <li><a href="https://yunanliu.wordpress.ncsu.edu/files/2022/07/Routing-and-staffing-in-emergency-departments-A-multiclass-queueing-model-with-workload-dependent-service-times.pdf" target="_blank">Routing and Staffing in Emergency Departments: A Multiclass Queueing Model with Workload Dependent Service Times</a></li>
+            <li><a href="https://www.sciencedirect.com/science/article/pii/S1877050924003880" target="_blank">Solving Nurse Rostering Optimization Problem using Reinforcement Learning</a></li>
+            <li><a href="https://www.researchgate.net/publication/370573401_Harris_Hawks_optimization_for_ambulance_vehicle_routing_in_smart_cities" target="_blank">Harris Hawks Optimization for Ambulance Vehicle Routing in Smart Cities</a></li>
+            <li><a href="https://www.mdpi.com/1039146" target="_blank">Optimization of Inventory Management to Prevent Drug Shortages in the Hospital Supply Chain</a></li>
+            <li><a href="https://ieeexplore.ieee.org/abstract/document/9760216/" target="_blank">A Novel Smart Ambulance System—Algorithm Design, Modeling, and Performance Analysis</a></li>
+            <li><a href="https://www.researchgate.net/publication/261281846_An_application_of_the_A_algorithm_on_the_ambulance_routing" target="_blank">An application of the A* algorithm on the ambulance routing</a></li>
+            <li><a href="https://ieeexplore.ieee.org/abstract/document/4736245/" target="_blank">Maximizing the utilization of operating rooms with stochastic times using simulation</a></li>
+            <li><a href="https://ieeexplore.ieee.org/abstract/document/6042473/" target="_blank">Resource Allocation for Healthcare Organizations</a></li>
+            <li><a href="https://www.redjournal.org/article/0360-3016(80)90229-1/abstract" target="_blank">Optimized radiotherapy treatment planning using the complication probability factor (cpf)</a></li>
+            <li><a href="https://www.sciencedirect.com/science/article/pii/S0360835224001992" target="_blank">Optimization of chemotherapy regimens using mathematical programming</a></li>
+            <li><a href="https://www.researchgate.net/publication/13723965_Genetic_Algorithm_Based_System_for_Patient_Scheduling_in_Highly_Constrained_Situations" target="_blank">Genetic Algorithm Based System for Patient Scheduling in Highly Constrained Situations</a></li>
+            <li><a href="https://www.sciencedirect.com/science/article/pii/S0305054822002519" target="_blank">Managing hospital inpatient beds under clustered overflow configuration</a></li>
+            <li><a href="https://spectrum.library.concordia.ca/id/eprint/993950/" target="_blank">Advanced Stochastic Programming and Machine Learning Models for Healthcare Planning, Scheduling, and Prediction Problems</a></li>
+            <li><a href="https://ieeexplore.ieee.org/abstract/document/10270025" target="_blank">A Comprehensive Survey of PSO-ACO Optimization and Swarm Intelligence in Healthcare: Implications for Medical Image Analysis and Disease Surveillance</a></li>
+            <li><a href="https://doi.org/10.3390/ijerph17165831" target="_blank">Path Optimization of Medical Waste Transport Routes in the Emergent Public Health Event of COVID-19</a></li>
+            <li><a href="https://doi.org/10.1016/j.eswa.2011.05.018" target="_blank">A fuzzy classification system based on Ant Colony Optimization for diabetes disease diagnosis</a></li>
+            <li><a href="https://doi.org/10.1002/net.21523" target="_blank">A stochastic inventory routing problem for infectious medical waste collection</a></li>
+            <li><a href="https://doi.org/10.1007/978-981-4451-98-7_93" target="_blank">Particle Swarm Optimization Based Nurses’ Shift Scheduling</a></li>
+            <li><a href="https://doi.org/10.1016/S0933-3657(00)00062-2" target="_blank">Hybrid Optimization Techniques for the Workshift and Rest Assignment of Nursing Personnel</a></li>
+        </ul>
+    </section>
+</body>
+</html>

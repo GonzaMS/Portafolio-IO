@@ -1,0 +1,169 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #121212;
+  color: #f5f5f5;
+  line-height: 1.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+p {
+  text-align: center;
+}
+
+a {
+  text-align: center;
+}
+
+section {
+  margin: 20px auto;
+  padding: 20px;
+  width: 100%;
+  max-width: 800px;
+  background: #1c1c1c;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.pdf-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  border: 1px solid #444;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.pdf-actions {
+  text-align: center;
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  color: #ffffff;
+  background-color: #007bff;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, transform 0.2s;
+  font-weight: bold;
+}
+
+.button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+ul li {
+  margin: 10px 0;
+}
+
+ul li a {
+  color: #4dabf7;
+  text-decoration: none;
+}
+
+ul li a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .pdf-container {
+    height: 300px;
+  }
+
+  .button {
+    width: 100%;
+    text-align: center;
+    padding: 15px;
+  }
+
+  section {
+    width: 100%;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .pdf-container {
+    height: 250px;
+  }
+}
+
+.algoritmo {
+  margin: 40px auto;
+  padding: 20px;
+  width: 80%;
+  max-width: 800px;
+  background: #1c1c1c;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.algoritmo pre {
+  background-color: #2d2d2d;
+  color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+.algoritmo code {
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  font-size: 0.9em;
+  color: #f5f5f5;
+  display: block;
+  white-space: pre-wrap;
+}
+
+.integrantes {
+  margin: 40px auto;
+  padding: 20px;
+  width: 80%;
+  max-width: 800px;
+  background: #1c1c1c;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  color: #f5f5f5;
+  text-align: center;
+}
+
+.integrantes ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.integrantes li {
+  margin: 10px 0;
+  font-size: 1.1em;
+}
