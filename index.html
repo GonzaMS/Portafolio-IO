@@ -40,88 +40,79 @@
         </div>
     </section>
 
-    <!-- Algoritmo Genetico -->
-    <section class="algoritmo">
-        <h1>Algoritmo Genético para Optimización de Inventario y Distribución</h1>
-        <pre><code>
-        import random
+<!-- Algoritmo Genetico -->
+<section class="algoritmo">
+    <h1>Algoritmo Genético para Optimización de Inventario y Distribución</h1>
+    <pre><code>
+import random
 
-        # Configuracion de parametros
-        generations = 100           # Numero de generaciones
-        population_size = 500       # Tamanho de la poblacion
-        mutation_rate = 0.1         # Tasa de mutacion
-        elite_size = 10             # Tamano de la elite
+# Configuracion de parametros
+generations = 100           # Numero de generaciones
+population_size = 500       # Tamanho de la poblacion
+mutation_rate = 0.1         # Tasa de mutacion
+elite_size = 10             # Tamano de la elite
 
-        # Genera una configuracion inicial de inventario y distribucion
-        def generate_individual():
-            inventory = [random.randint(1, 100) for _ in range(10)]
-            distribution = [random.randint(1, 50) for _ in range(10)]
-            return (inventory, distribution)
+# Genera una configuracion inicial de inventario y distribucion
+def generate_individual():
+    inventory = [random.randint(1, 100) for _ in range(10)]
+    distribution = [random.randint(1, 50) for _ in range(10)]
+    return (inventory, distribution)
 
-        # Funcion de aptitud que minimiza el costo combinado de inventario y distribucion
-        def fitness(individual):
-            inventory, distribution = individual
-            cost_inventory = sum(inventory)
-            cost_distribution = sum(distribution)
-            
-            if any(item < 10 for item in inventory):
-                cost_inventory += 1000
+# Funcion de aptitud que minimiza el costo combinado de inventario y distribucion
+def fitness(individual):
+    inventory, distribution = individual
+    cost_inventory = sum(inventory)
+    cost_distribution = sum(distribution)
+    
+    if any(item < 10 for item in inventory):
+        cost_inventory += 1000
 
-            total_cost = cost_inventory + cost_distribution
-            return total_cost
+    total_cost = cost_inventory + cost_distribution
+    return total_cost
 
-        # Cruce entre dos individuos
-        def crossover(parent1, parent2):
-            point = random.randint(1, len(parent1[0]) - 1)
-            child_inventory = parent1[0][:point] + parent2[0][point:]
-            child_distribution = parent1[1][:point] + parent2[1][point:]
-            return (child_inventory, child_distribution)
+# Cruce entre dos individuos
+def crossover(parent1, parent2):
+    point = random.randint(1, len(parent1[0]) - 1)
+    child_inventory = parent1[0][:point] + parent2[0][point:]
+    child_distribution = parent1[1][:point] + parent2[1][point:]
+    return (child_inventory, child_distribution)
 
-        # Mutacion
-        def mutate(individual):
-            inventory, distribution = individual
-            for i in range(len(inventory)):
-                if random.random() < mutation_rate:
-                    inventory[i] = random.randint(1, 100)
-                if random.random() < mutation_rate:
-                    distribution[i] = random.randint(1, 50)
+# Mutacion
+def mutate(individual):
+    inventory, distribution = individual
+    for i in range(len(inventory)):
+        if random.random() < mutation_rate:
+            inventory[i] = random.randint(1, 100)
+        if random.random() < mutation_rate:
+            distribution[i] = random.randint(1, 50)
 
-        # Algoritmo Genetico
-        population = [generate_individual() for _ in range(population_size)]
-        best_cost_per_generation = []
+# Algoritmo Genetico
+population = [generate_individual() for _ in range(population_size)]
+best_cost_per_generation = []
 
-        for generation in range(generations):
-            population = sorted(population, key=fitness)
-            best_cost = fitness(population[0])
-            best_cost_per_generation.append(best_cost)
-            print(f"Generacion {generation}: Mejor costo combinado = {best_cost}")
+for generation in range(generations):
+    population = sorted(population, key=fitness)
+    best_cost = fitness(population[0])
+    best_cost_per_generation.append(best_cost)
+    print(f"Generacion {generation}: Mejor costo combinado = {best_cost}")
 
-            elite_individuals = population[:elite_size]
-            next_generation = elite_individuals
+    elite_individuals = population[:elite_size]
+    next_generation = elite_individuals
 
-            while len(next_generation) < population_size:
-                parent1, parent2 = random.sample(population[:20], 2)
-                offspring = crossover(parent1, parent2)
-                mutate(offspring)
-                next_generation.append(offspring)
-            
-            population = next_generation
+    while len(next_generation) < population_size:
+        parent1, parent2 = random.sample(population[:20], 2)
+        offspring = crossover(parent1, parent2)
+        mutate(offspring)
+        next_generation.append(offspring)
+    
+    population = next_generation
 
-        best_solution = min(population, key=fitness)
-        print("Mejor solucion encontrada:", best_solution)
-        print("Costo de Inventario:", sum(best_solution[0]))
-        print("Costo de Distribucion:", sum(best_solution[1]))
-        </code></pre>
-    </section>
-
-    <!-- Artículos Revisados -->
-    <section class="articulos">
-        <h1>Artículos Revisados</h1>
-        <ul>
-            <li><a href="https://www.researchgate.net/publication/348209653_Stochastic_programming_for_outpatient_scheduling_with_flexible_inpatient_exam_accommodation" target="_blank">Stochastic programming for outpatient scheduling with flexible inpatient exam accommodation</a></li>
-            <!-- Añadir todos los enlaces de los artículos aquí -->
-        </ul>
-    </section>
+best_solution = min(population, key=fitness)
+print("Mejor solucion encontrada:", best_solution)
+print("Costo de Inventario:", sum(best_solution[0]))
+print("Costo de Distribucion:", sum(best_solution[1]))
+    </code></pre>
+</section>
 
     <!-- Articulos Revisados -->
     <section class="articulos">
