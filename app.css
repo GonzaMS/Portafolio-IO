@@ -136,6 +136,7 @@ ul li a:hover {
   padding: 20px;
   border-radius: 8px;
   overflow-x: auto;
+  margin: 0;
 }
 
 .algoritmo code {
