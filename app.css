@@ -93,33 +93,6 @@ ul li a:hover {
   text-decoration: underline;
 }
 
-@media (max-width: 768px) {
-  .pdf-container {
-    height: 300px;
-  }
-
-  .button {
-    width: 100%;
-    text-align: center;
-    padding: 15px;
-  }
-
-  section {
-    width: 100%;
-    padding: 15px;
-  }
-}
-
-@media (max-width: 480px) {
-  h1 {
-    font-size: 1.5rem;
-  }
-
-  .pdf-container {
-    height: 250px;
-  }
-}
-
 .algoritmo {
   margin: 40px auto;
   padding: 20px;
@@ -165,4 +138,32 @@ ul li a:hover {
 .integrantes li {
   margin: 10px 0;
   font-size: 1.1em;
+}
+
+
+@media (max-width: 768px) {
+  .pdf-container {
+    height: 300px;
+  }
+
+  .button {
+    width: 100%;
+    text-align: center;
+    padding: 15px;
+  }
+
+  section {
+    width: 100%;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .pdf-container {
+    height: 250px;
+  }
 }
